@@ -28,5 +28,5 @@ const schema = mongoose.Schema({
 
 }, {versionKey: false, timeStamp: true})
 
-const User = mongoose.model("user", schema);
-module.exports = User;
+const Auth = mongoose.model("auth", schema);
+module.exports = Auth;

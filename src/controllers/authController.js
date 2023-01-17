@@ -1,11 +1,11 @@
-const User = require("../models/UserModel");
+const Auth = require("../models/AuthModel");
 const bcrypt = require("bcrypt");
 
 //? register a new user
 const registerUser = async (req, res) => {
     try {
         const data = req.body;
-        const userExist = await User.findOne(
+        const userExist = await Auth.findOne(
             { email: data.email }
         );
 
@@ -17,7 +17,7 @@ const registerUser = async (req, res) => {
                 password: hashedPassword
             };
 
-            await User.create(newUser);
+            await Auth.create(newUser);
 
             res.status(201).json({
                 success: true,
@@ -43,7 +43,7 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
     try {
         const data = req.body;
-        const userExist = await User.findOne(
+        const userExist = await Auth.findOne(
             { email: data.email }
         );
 
@@ -51,7 +51,7 @@ const loginUser = async (req, res) => {
             const isMatch = await bcrypt.compare(data.password, userExist.password);
 
             if (isMatch) {
-                const user = await User.findOne(
+                const user = await Auth.findOne(
                     { email: data.email },
                     { password: 0 }
                 )
