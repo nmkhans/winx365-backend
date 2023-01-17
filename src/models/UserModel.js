@@ -20,6 +20,10 @@ const schema = mongoose.Schema({
     role: {
         type: String,
         default: "user"
+    },
+    password: {
+        type: String,
+        required: true
     }
 
 }, {versionKey: false, timeStamp: true})
