@@ -39,9 +39,19 @@ const getAgents = async (req, res) => {
         const skipRow = ((pageNo - 1) * perPage);
 
         const agents = await Agent.aggregate([
-            { $match: { role: role } },
-            { $skip: skipRow },
-            { $limit: perPage }
+            {
+                $facet: {
+                    count: [
+                        { $match: { role: role } },
+                        { $count: "value" }
+                    ],
+                    data: [
+                        { $match: { role: role } },
+                        { $skip: skipRow },
+                        { $limit: perPage }
+                    ]
+                }
+            }
         ])
 
         res.status(200).json({
