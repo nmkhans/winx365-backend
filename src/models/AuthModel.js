@@ -9,14 +9,6 @@ const schema = mongoose.Schema({
         type: String,
         required: true
     },
-    phone: {
-        type: Number,
-        required: true
-    },
-    whatsappUrl: {
-        type: String,
-        required: true
-    },
     role: {
         type: String,
         default: "user"
@@ -26,7 +18,7 @@ const schema = mongoose.Schema({
         required: true
     }
 
-}, {versionKey: false, timeStamp: true})
+}, {versionKey: false, timestamps: true})
 
 const Auth = mongoose.model("auth", schema);
 module.exports = Auth;

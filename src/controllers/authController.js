@@ -2,7 +2,7 @@ const Auth = require("../models/AuthModel");
 const bcrypt = require("bcrypt");
 
 //? register a new user
-const registerUser = async (req, res) => {
+const registerAdmin = async (req, res) => {
     try {
         const data = req.body;
         const userExist = await Auth.findOne(
@@ -40,7 +40,7 @@ const registerUser = async (req, res) => {
 }
 
 //? login a user
-const loginUser = async (req, res) => {
+const loginAdmin = async (req, res) => {
     try {
         const data = req.body;
         const userExist = await Auth.findOne(
@@ -85,6 +85,6 @@ const loginUser = async (req, res) => {
 }
 
 module.exports = {
-    registerUser,
-    loginUser
+    registerAdmin,
+    loginAdmin
 }
