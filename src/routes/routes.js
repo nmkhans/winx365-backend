@@ -1,6 +1,10 @@
 const express = require("express");
 const defaultController = require("../controllers/defaultController");
-const { registerAdmin, loginAdmin } = require("../controllers/authController");
+const {
+    registerAdmin,
+    loginAdmin
+} = require("../controllers/authController");
+const { addAgent } = require("../controllers/agentController");
 
 const router = express.Router();
 
@@ -9,10 +13,13 @@ const router = express.Router();
 //? default route
 router.get("/", defaultController)
 
-//? register user api
-router.post("/register-user", registerAdmin);
+//? register admin api
+router.post("/register-user", registerAdmin)
 
-//? login a user
+//? login admin api
 router.post("/login-user", loginAdmin)
+
+//? add agent api
+router.post("/add-agent", addAgent)
 
 module.exports = router;
