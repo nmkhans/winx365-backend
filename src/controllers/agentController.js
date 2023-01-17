@@ -36,7 +36,7 @@ const getAgents = async (req, res) => {
         const { role, pageno, perpage } = req.query;
         const pageNo = parseInt(pageno);
         const perPage = parseInt(perpage);
-        const skipRow = (pageNo - 1 * perPage);
+        const skipRow = ((pageNo - 1) * perPage);
 
         const agents = await Agent.aggregate([
             { $match: { role: role } },
@@ -52,6 +52,7 @@ const getAgents = async (req, res) => {
 
 
     } catch (error) {
+        console.log(error)
         res.status(200).json({
             success: false,
             message: "There was a server side error!"
