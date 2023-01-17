@@ -1,5 +1,6 @@
 const express = require("express");
 const defaultController = require("../controllers/defaultController");
+const { registerUser } = require("../controllers/userController");
 
 const router = express.Router();
 
@@ -7,5 +8,8 @@ const router = express.Router();
 
 //? default route
 router.get("/", defaultController)
+
+//? register user api
+router.post("/register-user", registerUser);
 
 module.exports = router;
