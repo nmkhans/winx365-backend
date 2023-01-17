@@ -30,6 +30,36 @@ const addAgent = async (req, res) => {
     }
 }
 
+//? get all agent
+const getAgents = async (req, res) => {
+    try {
+        const { role, pageno, perpage } = req.query;
+        const pageNo = parseInt(pageno);
+        const perPage = parseInt(perpage);
+        const skipRow = (pageNo - 1 * perPage);
+
+        const agents = await Agent.aggregate([
+            { $match: { role: role } },
+            { $skip: skipRow },
+            { $limit: perPage }
+        ])
+
+        res.status(200).json({
+            success: true,
+            message: "agent list",
+            data: agents
+        })
+
+
+    } catch (error) {
+        res.status(200).json({
+            success: false,
+            message: "There was a server side error!"
+        })
+    }
+}
+
 module.exports = {
-    addAgent
+    addAgent,
+    getAgents
 }

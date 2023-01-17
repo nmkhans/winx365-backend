@@ -4,7 +4,7 @@ const {
     registerAdmin,
     loginAdmin
 } = require("../controllers/authController");
-const { addAgent } = require("../controllers/agentController");
+const { addAgent, getAgents } = require("../controllers/agentController");
 
 const router = express.Router();
 
@@ -21,5 +21,8 @@ router.post("/login-user", loginAdmin)
 
 //? add agent api
 router.post("/add-agent", addAgent)
+
+//? get all agents api
+router.get("/get-agents", getAgents)
 
 module.exports = router;
