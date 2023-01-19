@@ -4,7 +4,7 @@ const {
     registerAdmin,
     loginAdmin
 } = require("../controllers/authController");
-const { addAgent, getAgents } = require("../controllers/agentController");
+const { addAgent, getAgents, deleteAgent } = require("../controllers/agentController");
 
 const router = express.Router();
 
@@ -24,5 +24,8 @@ router.post("/add-agent", addAgent)
 
 //? get all agents api
 router.get("/get-agents", getAgents)
+
+//? delete a agent
+router.delete("/delete-agent/:id", deleteAgent)
 
 module.exports = router;

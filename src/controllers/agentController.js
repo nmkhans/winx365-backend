@@ -70,7 +70,28 @@ const getAgents = async (req, res) => {
     }
 }
 
+//? delete a agent
+const deleteAgent = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const result = await Agent.deleteOne({ _id: id });
+        
+        res.status(200).json({
+            success: true,
+            message: "Agent deleted.",
+            data: result
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "There was a server side error"
+        })
+    }
+}
+
 module.exports = {
     addAgent,
-    getAgents
+    getAgents,
+    deleteAgent
 }
